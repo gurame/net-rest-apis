@@ -9,8 +9,8 @@ POST {{Api_HostAddress}}/movies
 Content-Type: application/json
 
 {
-  "title": "Titanic",
-  "yearOfRelease": 1998,
+  "title": "",
+  "yearOfRelease": 3200,
   "genres": ["Action", "Sci-Fi"]
 }
 
