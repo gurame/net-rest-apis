@@ -9,23 +9,23 @@ POST {{Api_HostAddress}}/movies
 Content-Type: application/json
 
 {
-  "title": "The Matrix",
-  "yearOfRelease": 2000,
+  "title": "Titanic",
+  "yearOfRelease": 1998,
   "genres": ["Action", "Sci-Fi"]
 }
 
 ###
-GET {{Api_HostAddress}}/movies/cff96fec-838b-40ce-a353-8f01a4d047e3
+GET {{Api_HostAddress}}/movies/0d76c951-e99c-4752-9417-4209a3f658aa
 
 ###
-PUT {{Api_HostAddress}}/movies/cff96fec-838b-40ce-a353-8f01a4d047e3
+PUT {{Api_HostAddress}}/movies/0d76c951-e99c-4752-9417-4209a3f658aa
 Content-Type: application/json
 
 {
-  "title": "The Matrix",
-  "yearOfRelease": 1999,
-  "genres": ["Action", "Comedy"]
+  "title": "Titanic",
+  "yearOfRelease": 1997,
+  "genres": ["Action", "Sci-Fi"]
 }
 
 ###
-DELETE {{Api_HostAddress}}/movies/cff96fec-838b-40ce-a353-8f01a4d047e3
+DELETE {{Api_HostAddress}}/movies/0d76c951-e99c-4752-9417-4209a3f658aa
