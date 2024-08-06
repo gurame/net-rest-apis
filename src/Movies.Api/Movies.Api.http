@@ -34,7 +34,9 @@ Content-Type: application/json
 }
 
 ###
-GET {{Api_HostAddress}}/movies/0d76c951-e99c-4752-9417-4209a3f658aa
+GET {{Api_HostAddress}}/movies/0fd084e9-54cb-4cf6-98e3-7f8191f5d6c5
+Accept: application/json
+Authorization: Bearer {{token}}
 
 ###
 PUT {{Api_HostAddress}}/movies/0d76c951-e99c-4752-9417-4209a3f658aa
