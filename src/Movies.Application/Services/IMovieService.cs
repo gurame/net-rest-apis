@@ -4,7 +4,7 @@ namespace Movies.Application.Services;
 
 public interface IMovieService
 {
-	Task<IEnumerable<Movie>> GetAllAsync();
+	Task<IEnumerable<Movie>> GetAllAsync(GetAllMoviesOptions options);
 	Task<Movie?> GetByIdAsync(Guid id);
 	Task<Movie?> GetBySlugAsync(string slug);
 	Task<bool> CreateAsync(Movie movie);

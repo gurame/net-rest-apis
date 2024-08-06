@@ -47,4 +47,19 @@ public static class ContractMapping
 			Items = movies.Select(x => x.MapToResponse()),
 		};
 	}
+
+	public static GetAllMoviesOptions MapToOptions(this GetAllMovieRequest request)
+	{
+		return new GetAllMoviesOptions
+		{
+			Title = request.Title,
+			Year = request.Year,
+		};
+	}
+
+	public static GetAllMoviesOptions WithUserId(this GetAllMoviesOptions options, Guid? userId)
+	{
+		options.UserId = userId;
+		return options;
+	}
 }

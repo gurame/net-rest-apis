@@ -59,15 +59,17 @@ public class MovieRepository : IMovieRepository
             @"select count(1) from movies where id=@Id", new { Id = id }));   
     }
 
-    public async Task<IEnumerable<Movie>> GetAllAsync()
+    public async Task<IEnumerable<Movie>> GetAllAsync(GetAllMoviesOptions options)
     {
         using var connection = await _dbConnectionFactory.CreateConnectionAsync();
         var movies = await connection.QueryAsync(new CommandDefinition(
             @"select m.*, string_agg(g.name, ',') as genres 
             from movies m
             inner join genres g on m.id = g.movie
+            where (@Title is null or m.title like ('%' || @Title || '%'))
+            and (@Year is null or m.yearofrelease = @Year)
             group by id
-            "));
+            ", new { Title = options.Title, Year = options.Year }));
 
         return movies.Select(movie => new Movie
         {

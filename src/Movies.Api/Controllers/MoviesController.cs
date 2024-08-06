@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Movies.Api.Mapping;
+using Movies.Api.Auth;
 using Movies.Application.Services;
 using Movies.Contracts.Requests;
 
@@ -33,9 +34,13 @@ public class MoviesController : ControllerBase
 
 	[Authorize(AuthConstants.TrustedMemberPolicyName)]
 	[HttpGet(ApiEndpoints.Movies.GetAll)]
-	public async Task<IActionResult> GetAll()
+	public async Task<IActionResult> GetAll([FromQuery]GetAllMovieRequest request)
 	{
-		var movies = await _movieService.GetAllAsync();
+		var userId = HttpContext.GetUserId();
+		var options = request.MapToOptions()
+			.WithUserId(userId);
+
+		var movies = await _movieService.GetAllAsync(options);
 		var response = movies.MapToResponse();
 		return Ok(response);
 	}
