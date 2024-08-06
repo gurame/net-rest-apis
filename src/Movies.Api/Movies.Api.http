@@ -1,7 +1,26 @@
+@Api_Identity = http://localhost:6000
 @Api_HostAddress = http://localhost:5166/api
 
+POST {{Api_Identity}}/token
+Accept: application/json
+Content-Type: application/json
+
+{
+  "userId": "0d76c951-e99c-4752-9417-4209a3f658ab",
+  "email": "admin@gurame.com",
+  "customClaims": {
+    "admin": true,
+    "trusted_member": true
+  }
+}
+
+###
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3YTU3MjZiZS0yZmRkLTRlY2ItOTQyZC1jMzhhZWRiOGZmMTYiLCJzdWIiOiJhZG1pbkBndXJhbWUuY29tIiwiZW1haWwiOiJhZG1pbkBndXJhbWUuY29tIiwidXNlcmlkIjoiMGQ3NmM5NTEtZTk5Yy00NzUyLTk0MTctNDIwOWEzZjY1OGFiIiwiYWRtaW4iOnRydWUsInRydXN0ZWRfbWVtYmVyIjp0cnVlLCJuYmYiOjE3MjI5NzM1NTYsImV4cCI6MTcyMzAwMjM1NiwiaWF0IjoxNzIyOTczNTU2LCJpc3MiOiJodHRwczovL2lkLmd1cmFtZS5jb20iLCJhdWQiOiJodHRwczovL21vdmllcy5ndXJhbWUuY29tIn0.S9eILfBJrj5ShnwJmLRsiF90mXW-R3Ox7ZZICl4gACE
+
+###
 GET {{Api_HostAddress}}/movies
 Accept: application/json
+Authorization: Bearer {{token}}
 
 ###
 
