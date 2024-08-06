@@ -21,6 +21,8 @@ public class MoviesController : ControllerBase
 
 	[Authorize(AuthConstants.TrustedMemberPolicyName)]
 	[HttpGet(ApiEndpoints.Movies.Get)]
+	[ProducesResponseType(typeof(MovieResponse), StatusCodes.Status200OK)]
+	[ProducesResponseType(StatusCodes.Status404NotFound)]
 	public async Task<IActionResult> Get([FromServices]LinkGenerator linkGenerator, [FromRoute] string idOrSlug)
 	{
 		var movie = Guid.TryParse(idOrSlug, out var id)
@@ -52,6 +54,8 @@ public class MoviesController : ControllerBase
 	
 	[Authorize(AuthConstants.AdminUserPolicyName)]
 	[HttpPost(ApiEndpoints.Movies.Create)]
+	[ProducesResponseType(typeof(MovieResponse), StatusCodes.Status201Created)]
+	[ProducesResponseType(typeof(ValidationFailureResponse), StatusCodes.Status400BadRequest)]
 	public async Task<IActionResult> Create([FromBody]CreateMovieRequest request)
 	{
 		var movie = request.MapToMovie();
