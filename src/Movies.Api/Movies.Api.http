@@ -9,13 +9,13 @@ Content-Type: application/json
   "userId": "0d76c951-e99c-4752-9417-4209a3f658ab",
   "email": "admin@gurame.com",
   "customClaims": {
-    "admin": true,
+    "admin": false,
     "trusted_member": true
   }
 }
 
 ###
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3YTU3MjZiZS0yZmRkLTRlY2ItOTQyZC1jMzhhZWRiOGZmMTYiLCJzdWIiOiJhZG1pbkBndXJhbWUuY29tIiwiZW1haWwiOiJhZG1pbkBndXJhbWUuY29tIiwidXNlcmlkIjoiMGQ3NmM5NTEtZTk5Yy00NzUyLTk0MTctNDIwOWEzZjY1OGFiIiwiYWRtaW4iOnRydWUsInRydXN0ZWRfbWVtYmVyIjp0cnVlLCJuYmYiOjE3MjI5NzM1NTYsImV4cCI6MTcyMzAwMjM1NiwiaWF0IjoxNzIyOTczNTU2LCJpc3MiOiJodHRwczovL2lkLmd1cmFtZS5jb20iLCJhdWQiOiJodHRwczovL21vdmllcy5ndXJhbWUuY29tIn0.S9eILfBJrj5ShnwJmLRsiF90mXW-R3Ox7ZZICl4gACE
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlNjc0MDY4Yi03Y2JiLTRhOWItOGJhMS1jNzU5YWQxM2FjZTIiLCJzdWIiOiJhZG1pbkBndXJhbWUuY29tIiwiZW1haWwiOiJhZG1pbkBndXJhbWUuY29tIiwidXNlcmlkIjoiMGQ3NmM5NTEtZTk5Yy00NzUyLTk0MTctNDIwOWEzZjY1OGFiIiwiYWRtaW4iOmZhbHNlLCJ0cnVzdGVkX21lbWJlciI6dHJ1ZSwibmJmIjoxNzIyOTc0NDk3LCJleHAiOjE3MjMwMDMyOTcsImlhdCI6MTcyMjk3NDQ5NywiaXNzIjoiaHR0cHM6Ly9pZC5ndXJhbWUuY29tIiwiYXVkIjoiaHR0cHM6Ly9tb3ZpZXMuZ3VyYW1lLmNvbSJ9.BrkT8u2pNrT79aR28YRPZkSjZMW4lvu497gS7dRn2Kw
 
 ###
 GET {{Api_HostAddress}}/movies
