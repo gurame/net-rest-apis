@@ -1,6 +1,10 @@
 @Api_Identity = http://localhost:6000
 @Api_HostAddress = http://localhost:5166/api
 
+###
+GET http://localhost:5166/hc
+
+### 
 POST {{Api_Identity}}/token
 Accept: application/json
 Content-Type: application/json
