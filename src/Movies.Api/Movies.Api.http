@@ -19,7 +19,7 @@ Content-Type: application/json
 
 ###
 GET {{Api_HostAddress}}/movies?page=1&pageSize=5
-Accept: application/json
+Accept: application/json;api-version=1.0
 Authorization: Bearer {{token}}
 
 ###
