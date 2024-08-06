@@ -1,0 +1,31 @@
+@Api_HostAddress = http://localhost:5166/api
+
+GET {{Api_HostAddress}}/movies
+Accept: application/json
+
+###
+
+POST {{Api_HostAddress}}/movies
+Content-Type: application/json
+
+{
+  "title": "The Matrix",
+  "yearOfRelease": 2000,
+  "genres": ["Action", "Sci-Fi"]
+}
+
+###
+GET {{Api_HostAddress}}/movies/cff96fec-838b-40ce-a353-8f01a4d047e3
+
+###
+PUT {{Api_HostAddress}}/movies/cff96fec-838b-40ce-a353-8f01a4d047e3
+Content-Type: application/json
+
+{
+  "title": "The Matrix",
+  "yearOfRelease": 1999,
+  "genres": ["Action", "Comedy"]
+}
+
+###
+DELETE {{Api_HostAddress}}/movies/cff96fec-838b-40ce-a353-8f01a4d047e3
