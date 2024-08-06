@@ -55,4 +55,8 @@ public class MovieService : IMovieService
 		await _movieRepository.UpdateAsync(movie);
 		return movie;
     }
+    public Task<int> GetCountAsync(string? title, int? year)
+    {
+        return _movieRepository.GetCountAsync(title, year);
+    }
 }

@@ -10,4 +10,5 @@ public interface IMovieService
 	Task<bool> CreateAsync(Movie movie);
 	Task<Movie?> UpdateAsync(Movie movie);
 	Task<bool> DeleteByIdAsync(Guid id);
+	Task<int> GetCountAsync(string? title, int? year);
 }

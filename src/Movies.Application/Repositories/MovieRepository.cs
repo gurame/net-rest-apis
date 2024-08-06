@@ -79,7 +79,14 @@ public class MovieRepository : IMovieRepository
             where (@Title is null or m.title like ('%' || @Title || '%'))
             and (@Year is null or m.yearofrelease = @Year)
             group by id {orderClause}
-            ", new { Title = options.Title, Year = options.Year }));
+            limit @PageSize 
+            offset @PageOffset
+            ", new { 
+                Title = options.Title, 
+                Year = options.Year,
+                PageSize = options.PageSize,
+                PageOffset = options.PageSize * (options.Page - 1)
+            }));
 
         return movies.Select(movie => new Movie
         {
@@ -157,5 +164,11 @@ public class MovieRepository : IMovieRepository
         transaction.Commit();
         
         return result > 0;
+    }
+    public async Task<int> GetCountAsync(string? title, int? year)
+    {
+        using var connection = await _dbConnectionFactory.CreateConnectionAsync();
+        return await connection.ExecuteScalarAsync<int>(new CommandDefinition(
+            @"select count(1) from movies where (@Title is null or title like ('%' || @Title || '%')) and (@Year is null or yearofrelease = @Year)", new { Title = title, Year = year }));
     }
 }

@@ -12,5 +12,8 @@ public class GetAllMoviesOptionsValidator : AbstractValidator<GetAllMoviesOption
 		RuleFor(x => x.Year).LessThanOrEqualTo(DateTime.Now.Year);
 		RuleFor(x => x.SortField).Must(x => x is null || AcceptableSortFields.Contains(x))
 			.WithMessage($"Sort field must be one of {string.Join(", ", AcceptableSortFields)}");
+
+		RuleFor(x => x.Page).GreaterThan(0);
+		RuleFor(x => x.PageSize).InclusiveBetween(1, 20);
 	}
 }

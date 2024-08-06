@@ -11,4 +11,5 @@ public interface IMovieRepository
 	Task<bool> UpdateAsync(Movie movie);
 	Task<bool> DeleteByIdAsync(Guid id);
 	Task<bool> ExistsAsync(Guid id);
+	Task<int> GetCountAsync(string? title, int? year);
 }
