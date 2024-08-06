@@ -32,26 +32,6 @@ public class MoviesController : ControllerBase
 			return NotFound();
 		}
 		var response = movie.MapToResponse();
-		var movieObj = new { id = response.Id };
-		response.Links.Add(new Link
-		{
-			Href = linkGenerator.GetPathByAction(HttpContext, nameof(Get), values: new { idOrSlug = movieObj.id })!,
-			Rel = "self",
-			Type = "GET"
-		});
-		response.Links.Add(new Link
-		{
-			Href = linkGenerator.GetPathByAction(HttpContext, nameof(Update), values: new { id = movieObj.id })!,
-			Rel = "self",
-			Type = "PUT"
-		});
-		response.Links.Add(new Link
-		{
-			Href = linkGenerator.GetPathByAction(HttpContext, nameof(Delete), values: new { id = movieObj.id })!,
-			Rel = "self",
-			Type = "DELETE"
-		});
-
 		return Ok(response);
 	}
 
