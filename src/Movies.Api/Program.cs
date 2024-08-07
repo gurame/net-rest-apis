@@ -20,7 +20,12 @@ builder.Services.AddApiVersioning(x=> {
     x.ApiVersionReader = new MediaTypeApiVersionReader("api-version");
 }).AddMvc().AddApiExplorer();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(x=>{
+                x.RespectBrowserAcceptHeader = true; // Enable respect for the Accept header
+            })
+            .AddXmlSerializerFormatters();
+
+builder.Services.AddResponseCaching();
 
 builder.Services.AddHealthChecks()
     .AddCheck<DatabaseHealthCheck>(DatabaseHealthCheck.Name);
@@ -75,6 +80,8 @@ app.UseHealthChecks("/hc");
 
 app.UseAuthentication()
    .UseAuthorization();
+
+app.UseResponseCaching();
 
 app.UseMiddleware<ValidationMappingMiddleware>();
 app.MapControllers();

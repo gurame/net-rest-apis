@@ -13,12 +13,14 @@ namespace Movies.Api.Controllers.V2;
 public class MoviesController : ControllerBase
 {
 	private readonly IMovieService _movieService;
-    public MoviesController(IMovieService movieService)
+	private readonly ILogger<MoviesController> _logger;
+    public MoviesController(IMovieService movieService, ILogger<MoviesController> logger)
     {
         _movieService = movieService;
+        _logger = logger;
     }
 
-	[Authorize(AuthConstants.TrustedMemberPolicyName)]
+    [Authorize(AuthConstants.TrustedMemberPolicyName)]
 	[HttpGet(ApiEndpoints.Movies.Get)]
 	public async Task<IActionResult> Get([FromServices]LinkGenerator linkGenerator, [FromRoute] string idOrSlug)
 	{
@@ -39,5 +41,24 @@ public class MoviesController : ControllerBase
 			Type = "GET"
 		});
 		return Ok(response);
+	}
+
+	[AllowAnonymous]
+	[HttpGet(ApiEndpoints.Movies.Genres)]
+	[Produces("application/json", "application/xml")]
+	[ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any, VaryByHeader = "Accept, Accept-Encoding")]
+	[MapToApiVersion(1.0)]
+	public async Task<IActionResult> GetGenres()
+	{
+		_logger.LogInformation("Getting genres");
+		// create a list of strings of genres
+		var genres = await Task.Run(()=> new List<MovieGenreResponse> { 
+			new() { Name = "Action" },
+			new() { Name = "Comedy" },
+			new() { Name = "Drama" },
+			new() { Name = "Horror" },
+			new() { Name = "Sci-Fi" }
+		});
+		return Ok(genres);
 	}
 }
